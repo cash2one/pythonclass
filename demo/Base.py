@@ -10,6 +10,7 @@ from pprint import pprint
 import ConfigParser
 
 ROOT_PATH = os.path.split(os.path.realpath(__file__))[0]
+CONF_PATH = ROOT_PATH + '/config'
 
 # 调试函数
 def de(var):
@@ -19,7 +20,7 @@ def de(var):
 # 获取数据库对象
 def getDbInstance():
 
-	db_conf = ROOT_PATH + '/config/db.ini'
+	db_conf = CONF_PATH + '/db.ini'
 	confIns = loadConf(db_conf)
 
 	db_args = {}
@@ -39,6 +40,9 @@ def loadConf(config_file):
 	if not os.path.exists(config_file) :
 		return False
 
-	cnf = ConfigParser.ConfigParser()
-	cnf.read(config_file)
-	return cnf
+	try:
+		cnf = ConfigParser.ConfigParser()
+		cnf.read(config_file)
+		return cnf
+	except Exception, e:
+		print e.args[0]
