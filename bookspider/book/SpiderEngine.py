@@ -82,7 +82,7 @@ class lewen(BaseSpider):
 		domain = self.url[0: self.url.find('/', 8)]
 		chapter_url = domain + chapter_url
 
-		try:	
+		try:
 			header = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'}
 			req = urllib2.Request(chapter_url, headers=header)
 			chapter_html = urllib2.urlopen(req, timeout=20).read()
@@ -207,6 +207,3 @@ class biquge(BaseSpider):
 		res['content'] = cont
 		res['publish_time'] = time.strftime('%Y-%m-%d %H:%M:%S')
 		return res
-
-
-
